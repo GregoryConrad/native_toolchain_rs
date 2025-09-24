@@ -1,0 +1,21 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: pub
+    directories:
+      - "**/*"
+    schedule:
+      interval: "weekly"
+    groups:
+      all:
+        patterns:
+          - "*"
+  - package-ecosystem: cargo
+    directories:
+      - "**/*"
+    schedule:
+      interval: "weekly"
+    groups:
+      all:
+        patterns:
+          - "*"

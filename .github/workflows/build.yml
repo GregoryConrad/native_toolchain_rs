@@ -1,0 +1,153 @@
+name: Build & Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 10 * * *" # run everyday at 10 AM
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup
+      - uses: actions/checkout@v5
+      - uses: cachix/install-nix-action@v31
+      - uses: subosito/flutter-action@v2 # TODO remove this once flutter is in flake
+        with:
+          channel: beta
+      - run: |
+          # TODO remove this once patch lands
+          flutter --version
+          cd ${{ env.FLUTTER_ROOT }}
+          curl https://patch-diff.githubusercontent.com/raw/flutter/flutter/pull/175323.patch | git apply
+          git status
+          rm bin/cache/flutter_tools.stamp bin/cache/flutter_tools.snapshot
+      - name: Install direnv
+        run: |
+          curl -sfL https://direnv.net/install.sh | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      # - name: Load environment variables
+      #   run: |
+      #     direnv allow .
+      #     direnv export gha > "$GITHUB_ENV"
+
+      # # Codegen
+      # - name: Run codegen
+      #   run: melos run codegen
+      # - name: Ensure there are no diffs from codegen
+      #   run: git diff --exit-code
+
+      # # Rust
+      # - name: Rust format
+      #   run: cargo fmt --all --check
+      # - name: Rust lint
+      #   run: cargo clippy -- -D warnings
+      # - name: Rust tests
+      #   run: cargo test
+
+      # # Dart/Flutter
+      # - name: Dart format
+      #   run: dart format --set-exit-if-changed .
+      # - name: Dart lint
+      #   run: flutter analyze --fatal-infos --fatal-warnings
+      # - name: Dart tests
+      #   run: melos run test
+
+  # macos_integration_test:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: beta # TODO remove
+  #     - name: Create macOS boilerplate
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter create . --platforms=macos
+  #     - name: Disable macOS App Sandbox
+  #       working-directory: packages/flutter_mimir/example
+  #       run: /usr/libexec/PlistBuddy -c "Delete :com.apple.security.app-sandbox" macos/Runner/DebugProfile.entitlements
+  #     - name: Run Flutter integration tests
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter test -d macos integration_test
+
+  # windows_integration_test:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: beta # TODO remove
+  #     - name: Create Windows boilerplate
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter create . --platforms=windows
+  #     - name: Run Flutter integration tests
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter test -d windows integration_test
+
+  # linux_integration_test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: beta # TODO remove
+  #     - uses: pyvista/setup-headless-display-action@v3
+  #     - name: Install dependencies for flutter integration test
+  #       run: sudo apt update && sudo apt-get install -y libglu1-mesa ninja-build clang cmake pkg-config libgtk-3-dev liblzma-dev
+  #     - name: Create Linux boilerplate
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter create . --platforms=linux
+  #     - name: Run Flutter integration tests
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter test -d linux integration_test
+
+  # ios_integration_test:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: beta # TODO remove
+  #     - name: Start iOS Simulator
+  #       uses: futureware-tech/simulator-action@v4
+  #       id: start_simulator
+  #       with:
+  #         wait_for_boot: true
+  #     - name: Create iOS boilerplate
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter create . --platforms=ios
+  #     - name: Run Flutter integration tests # NOTE: we often get timeouts otherwise
+  #       uses: Wandalen/wretry.action@v3
+  #       with:
+  #         attempt_limit: 5
+  #         current_path: packages/flutter_mimir/example
+  #         command: flutter test -d ${{ steps.start_simulator.outputs.udid }} integration_test
+
+  # android_integration_test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v5
+  #     - uses: subosito/flutter-action@v2
+  #       with:
+  #         channel: beta # TODO remove
+  #     - name: Create Android boilerplate
+  #       working-directory: packages/flutter_mimir/example
+  #       run: flutter create . --platforms=android
+  #     - name: Enable KVM for Android emulator
+  #       run: |
+  #         echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+  #         sudo udevadm control --reload-rules
+  #         sudo udevadm trigger --name-match=kvm
+  #     - name: Run Flutter integration tests
+  #       uses: reactivecircus/android-emulator-runner@v2
+  #       with:
+  #         api-level: 35
+  #         target: default
+  #         arch: x86_64
+  #         ram-size: 1024M
+  #         disk-size: 2048M
+  #         working-directory: packages/flutter_mimir/example
+  #         script: flutter test -d `flutter devices | grep android | tr ' ' '\n' | grep emulator-` integration_test
