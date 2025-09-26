@@ -7,6 +7,8 @@ import 'package:native_toolchain_rs/src/crate_resolver.dart';
 import 'package:native_toolchain_rs/src/process_runner.dart';
 import 'package:native_toolchain_rs/src/toml_parsing.dart';
 
+export 'package:native_toolchain_rs/src/exception.dart';
+
 /// The mode to build the Rust crate with.
 enum BuildMode {
   /// Build in release mode; i.e., `cargo build --release`
