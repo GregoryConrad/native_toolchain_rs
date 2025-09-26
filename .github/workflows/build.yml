@@ -35,18 +35,18 @@ jobs:
           direnv export gha > "$GITHUB_ENV"
 
       # # Rust
-      # - name: Rust format
-      #   run: cargo fmt --all --check
       # - name: Rust lint
       #   run: cargo clippy -- -D warnings
+      # - name: Rust format
+      #   run: cargo fmt --all --check
       # - name: Rust tests
       #   run: cargo test
 
       # Dart/Flutter
-      - name: Dart format
-        run: dart format --set-exit-if-changed .
       - name: Dart lint
         run: flutter analyze --fatal-infos --fatal-warnings
+      - name: Dart format
+        run: dart format --set-exit-if-changed .
       # - name: Dart tests
       #   run: melos run test
 

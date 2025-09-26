@@ -106,10 +106,6 @@ final class RustBuilder {
       tomlDocumentWrapperFactory: tomlDocumentWrapperFactory,
       cargoManifestParser: cargoManifestParser,
       toolchainTomlParser: toolchainTomlParser,
-    ).run(
-      input: input,
-      output: output,
-      assetRouting: assetRouting,
-    );
+    ).run(input: input, output: output, assetRouting: assetRouting);
   }
 }

@@ -72,10 +72,7 @@ final class CargoManifestParser {
       () => manifest.walk<List<dynamic>>('lib.crate-type').cast<String>(),
     ]);
 
-    return (
-      crateName: crateName,
-      libCrateTypes: libCrateTypes,
-    );
+    return (crateName: crateName, libCrateTypes: libCrateTypes);
   }
 }
 
@@ -114,9 +111,6 @@ final class ToolchainTomlParser {
           .toSet(),
     ]);
 
-    return (
-      channel: channel,
-      targets: targets,
-    );
+    return (channel: channel, targets: targets);
   }
 }
