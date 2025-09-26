@@ -29,16 +29,10 @@ jobs:
         run: |
           curl -sfL https://direnv.net/install.sh | bash
           echo "$HOME/.local/bin" >> $GITHUB_PATH
-      # - name: Load environment variables
-      #   run: |
-      #     direnv allow .
-      #     direnv export gha > "$GITHUB_ENV"
-
-      # # Codegen
-      # - name: Run codegen
-      #   run: melos run codegen
-      # - name: Ensure there are no diffs from codegen
-      #   run: git diff --exit-code
+      - name: Load environment variables
+        run: |
+          direnv allow .
+          direnv export gha > "$GITHUB_ENV"
 
       # # Rust
       # - name: Rust format
@@ -48,11 +42,11 @@ jobs:
       # - name: Rust tests
       #   run: cargo test
 
-      # # Dart/Flutter
-      # - name: Dart format
-      #   run: dart format --set-exit-if-changed .
-      # - name: Dart lint
-      #   run: flutter analyze --fatal-infos --fatal-warnings
+      # Dart/Flutter
+      - name: Dart format
+        run: dart format --set-exit-if-changed .
+      - name: Dart lint
+        run: flutter analyze --fatal-infos --fatal-warnings
       # - name: Dart tests
       #   run: melos run test
 
