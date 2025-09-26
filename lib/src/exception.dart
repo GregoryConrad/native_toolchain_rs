@@ -5,11 +5,7 @@ import 'package:meta/meta.dart';
 // NOTE: the API for our exceptions is currently experimental
 // ignore_for_file: public_member_api_docs
 
-/// # WARNING
-/// This is experimental!
-/// It may change on any new release without notice!
-/// Please file an issue with your use-case for it, if you do use it.
-@experimental
+/// An [Exception] representing a failure while trying to build Rust assets.
 sealed class RustBuildException implements Exception {}
 
 /// # WARNING
@@ -67,3 +63,8 @@ final class RustProcessException implements RustBuildException {
       'innerProcessException: ${inner ?? 'none'}'
       ')';
 }
+
+// NOTE: this is here so that end-users can't exhaustively pattern match
+// (and thus gives us some API flexibility for new types)
+// ignore: unused_element
+final class _NoBreakingChangeForNewExceptions implements RustBuildException {}

@@ -5,7 +5,6 @@ import 'package:hooks/hooks.dart';
 import 'package:logging/logging.dart';
 import 'package:native_toolchain_rs/native_toolchain_rs.dart';
 import 'package:native_toolchain_rs/src/crate_resolver.dart';
-import 'package:native_toolchain_rs/src/exception.dart';
 import 'package:native_toolchain_rs/src/process_runner.dart';
 import 'package:native_toolchain_rs/src/toml_parsing.dart';
 import 'package:path/path.dart' as path;
