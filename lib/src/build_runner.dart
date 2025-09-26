@@ -94,10 +94,7 @@ final class RustBuildRunner {
         '--target-dir',
         outputDir,
         if (!enableDefaultFeatures) '--no-default-features',
-        if (features.isNotEmpty) ...[
-          '--features',
-          features.join(','),
-        ],
+        if (features.isNotEmpty) ...['--features', features.join(',')],
         ...extraCargoBuildArgs,
       ],
       environment: {
