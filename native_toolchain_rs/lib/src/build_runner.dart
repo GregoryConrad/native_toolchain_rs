@@ -131,11 +131,10 @@ interface class RustBuildRunner {
   Future<void> ensureToolchainDownloaded(String crateDirectory) async {
     // NOTE: invoking rustup automatically downloads the toolchain
     // in rust-toolchain.toml, if not already downloaded.
-    logger?.config(
-      await processRunner.invokeRustup([
-        'show',
-        'active-toolchain',
-      ], workingDirectory: crateDirectory),
-    );
+    final showToolchainOutput = await processRunner.invokeRustup([
+      'show',
+      'active-toolchain',
+    ], workingDirectory: crateDirectory);
+    logger?.config(showToolchainOutput);
   }
 }
