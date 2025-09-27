@@ -23,3 +23,12 @@ dev_dependencies:
 
 melos:
   useRootAsPackage: true
+  scripts:
+    test:
+      description: Run unit tests for a specific package in this project.
+      run: flutter test test
+      packageFilters:
+        dirExists: test
+      exec:
+        concurrency: 1
+        failFast: true

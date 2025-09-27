@@ -47,8 +47,8 @@ jobs:
         run: flutter analyze --fatal-infos --fatal-warnings
       - name: Dart format
         run: dart format --set-exit-if-changed .
-      # - name: Dart tests
-      #   run: melos run test
+      - name: Dart tests
+        run: melos run test
 
   # macos_integration_test:
   #   runs-on: macos-latest
