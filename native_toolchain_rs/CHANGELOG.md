@@ -1,3 +1,7 @@
+## 0.1.1+2
+
+ - **FIX**: revert to meta 1.16 for stable flutter.
+
 ## 0.1.1+1
 
  - **REFACTOR**: switch to monorepo ([#15](https://github.com/GregoryConrad/native_toolchain_rs/issues/15)).

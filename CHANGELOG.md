@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`native_toolchain_rs` - `v0.1.1+2`](#native_toolchain_rs---v0112)
+
+---
+
+#### `native_toolchain_rs` - `v0.1.1+2`
+
+ - **FIX**: revert to meta 1.16 for stable flutter.
+
+
+## 2025-09-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`native_toolchain_rs` - `v0.1.1+1`](#native_toolchain_rs---v0111)
 
 ---
