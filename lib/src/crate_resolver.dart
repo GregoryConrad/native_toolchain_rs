@@ -1,12 +1,11 @@
 import 'dart:io';
 
+import 'package:meta/meta.dart';
 import 'package:native_toolchain_rs/src/exception.dart';
 import 'package:path/path.dart' as path;
 
-// NOTE: this is an internal implementation detail
-// ignore_for_file: public_member_api_docs
-
-final class CrateDirectoryResolver {
+@internal
+interface class CrateDirectoryResolver {
   const CrateDirectoryResolver();
 
   Directory resolveCrateDirectory({

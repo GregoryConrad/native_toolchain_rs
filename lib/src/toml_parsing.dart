@@ -1,13 +1,12 @@
 import 'dart:io';
 
 import 'package:logging/logging.dart';
+import 'package:meta/meta.dart';
 import 'package:native_toolchain_rs/src/exception.dart';
 import 'package:toml/toml.dart';
 
-// NOTE: this is an internal implementation detail
-// ignore_for_file: public_member_api_docs
-
-final class TomlDocumentWrapperFactory {
+@internal
+interface class TomlDocumentWrapperFactory {
   const TomlDocumentWrapperFactory(this.logger);
   final Logger? logger;
 
@@ -15,6 +14,7 @@ final class TomlDocumentWrapperFactory {
       TomlDocumentWrapper(logger, filePath, TomlDocument.loadSync(filePath));
 }
 
+@internal
 final class TomlDocumentWrapper {
   const TomlDocumentWrapper(this.logger, this.filePath, this.document);
 
@@ -42,7 +42,8 @@ final class TomlDocumentWrapper {
   }
 }
 
-final class CargoManifestParser {
+@internal
+interface class CargoManifestParser {
   const CargoManifestParser(this.logger, this.tomlDocumentFactory);
   final Logger? logger;
   final TomlDocumentWrapperFactory tomlDocumentFactory;
@@ -76,7 +77,8 @@ final class CargoManifestParser {
   }
 }
 
-final class ToolchainTomlParser {
+@internal
+interface class ToolchainTomlParser {
   const ToolchainTomlParser(this.logger, this.tomlDocumentFactory);
   final Logger? logger;
   final TomlDocumentWrapperFactory tomlDocumentFactory;

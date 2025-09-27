@@ -18,8 +18,18 @@ dependencies:
 
 dev_dependencies:
   melos: ^7.1.1
+  mocktail: ^1.0.4
   test: ^1.26.3
   very_good_analysis: ^10.0.0
 
 melos:
   useRootAsPackage: true
+  scripts:
+    test:
+      description: Run unit tests for a specific package in this project.
+      run: flutter test test
+      packageFilters:
+        dirExists: test
+      exec:
+        concurrency: 1
+        failFast: true

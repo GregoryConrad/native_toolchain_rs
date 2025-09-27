@@ -2,20 +2,22 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 
-// NOTE: the API for our exceptions is currently experimental
-// ignore_for_file: public_member_api_docs
-
 /// An [Exception] representing a failure while trying to build Rust assets.
 sealed class RustBuildException implements Exception {}
 
+/// A [RustBuildException] that specifies there were some issues
+/// while validating the project.
+///
 /// # WARNING
 /// This is experimental!
 /// It may change on any new release without notice!
 /// Please file an issue with your use-case for it, if you do use it.
 @experimental
 final class RustValidationException implements RustBuildException {
-  @experimental
+  /// Creates a [RustValidationException] with [validationErrors].
   const RustValidationException(this.validationErrors);
+
+  /// The validation issues encountered.
   final List<String> validationErrors;
 
   /// Calls all [functions] and throws an aggregate [RustValidationException]
@@ -45,15 +47,23 @@ final class RustValidationException implements RustBuildException {
       'RustValidationException(validationErrors: $validationErrors)';
 }
 
+/// A [RustBuildException] that specifies there was an issue
+/// when invoking an external process.
+///
 /// # WARNING
 /// This is experimental!
 /// It may change on any new release without notice!
 /// Please file an issue with your use-case for it, if you do use it.
 @experimental
 final class RustProcessException implements RustBuildException {
-  @experimental
+  /// Creates a [RustProcessException] with [message] and [inner].
   const RustProcessException(this.message, {this.inner});
+
+  /// The message associated with this [RustProcessException].
   final String message;
+
+  /// The inner [ProcessException],
+  /// in case this [RustProcessException] is wrapping around one.
   final ProcessException? inner;
 
   @override
