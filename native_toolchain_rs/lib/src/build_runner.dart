@@ -117,7 +117,9 @@ interface class RustBuildRunner {
               outputDir,
               targetTriple,
               cargoBuildMode,
-              targetOS.libraryFileName(crateName, linkMode),
+              targetOS
+                  .libraryFileName(crateName, linkMode)
+                  .replaceAll('-', '_'),
             ),
           ),
         ),
