@@ -4,10 +4,7 @@
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="MIT License"></a>
 </p>
 
-# native_toolchain_rs
 Rust support for Dart's Native Assets.
-
----
 
 ## Why native_toolchain_rs?
 1. It's opinionated.
@@ -29,7 +26,7 @@ Rust support for Dart's Native Assets.
 ## Code Setup
 `native_toolchain_rs` will look (by default) for `native/` or `rust/` (customizable)
 in your Dart package's root.
-Create a `Cargo.toml` and `rust-toolchain.toml` in your chosen Rust sources directory;
+If you haven't already, create a `Cargo.toml` and `rust-toolchain.toml` in your chosen Rust directory;
 keep reading for what these two files must contain
 (but don't worry if you forget, you'll get a helpful error message).
 
@@ -64,11 +61,7 @@ void main(List<String> args) async {
     await RustBuilder(
       assetName: 'src/my_ffi_bindings.g.dart',
       // ...maybe enable some Cargo features or something in here too
-    ).run(
-      input: input,
-      output: output,
-      logger: logger,
-    );
+    ).run(input: input, output: output, logger: logger);
   });
 }
 ```
@@ -77,7 +70,7 @@ void main(List<String> args) async {
 Keep at least the following in your `Cargo.toml`.
 ```toml
 [package]
-name = "my-crate-name" # name it whatever you want, doesn't matter
+name = "my-crate-name" # pick a name, doesn't matter
 
 [lib]
 crate-type = ["staticlib", "cdylib"] # THESE ARE IMPORTANT!
@@ -87,7 +80,9 @@ crate-type = ["staticlib", "cdylib"] # THESE ARE IMPORTANT!
 Keep at least the following in your `rust-toolchain.toml`.
 ```toml
 [toolchain]
-channel = "1.90.0" # or newer, but *do not* use stable, beta, or nightly alone (without a version number)!
+# WARNING: *do not* use `stable`, `beta`, or `nightly` (alone) for the channel!
+# You must specify a version number/date in order to ensure reproducible builds.
+channel = "1.90.0" # or newer. another example: `nightly-2025-01-01`
 
 # The targets you want to support; these are the default:
 targets = [
