@@ -37,7 +37,12 @@ final class TomlDocumentWrapper {
         exception,
         stackTrace,
       );
-      throw RustValidationException(['Could not find $path in $filePath']);
+      throw RustValidationException([
+        '''
+Could not find the field `$path` in the TOML file at $filePath.
+Please ensure the field exists and is correctly formatted.
+The following exception was thrown: $exception''',
+      ]);
     }
   }
 }
@@ -53,7 +58,11 @@ interface class CargoManifestParser {
   ) {
     logger?.info('Looking for Cargo.toml');
     if (!File(manifestPath).existsSync()) {
-      throw RustValidationException(['$manifestPath not found']);
+      throw RustValidationException([
+        '''
+The Cargo.toml file was not found at $manifestPath.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#cargotoml''',
+      ]);
     }
 
     logger?.info('Parsing Cargo.toml');
@@ -62,15 +71,42 @@ interface class CargoManifestParser {
       manifest = tomlDocumentFactory.parseFile(manifestPath);
     } on Object catch (exception, stackTrace) {
       logger?.severe('Failed to parse Cargo.toml', exception, stackTrace);
-      throw RustValidationException(['Failed to parse Cargo.toml: $exception']);
+      throw RustValidationException([
+        '''
+Failed to parse the Cargo.toml file at $manifestPath.
+Please check the file for syntax errors.
+For more information, see https://doc.rust-lang.org/cargo/reference/manifest.html
+The following exception was thrown: $exception''',
+      ]);
     }
 
     final [
       String crateName,
       List<String> libCrateTypes,
     ] = RustValidationException.compose<dynamic>([
-      () => manifest.walk<String>('package.name'),
-      () => manifest.walk<List<dynamic>>('lib.crate-type').cast<String>(),
+      () {
+        try {
+          return manifest.walk<String>('package.name');
+        } on RustValidationException {
+          throw const RustValidationException([
+            '''
+The Cargo.toml file must specify the `package.name` field.
+For more information, see https://doc.rust-lang.org/cargo/reference/manifest.html#the-name-field''',
+          ]);
+        }
+      },
+      () {
+        try {
+          return manifest.walk<List<dynamic>>('lib.crate-type').cast<String>();
+        } on RustValidationException {
+          throw const RustValidationException([
+            '''
+The Cargo.toml file must specify the `lib.crate-type` field.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#cargotoml
+and https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-field''',
+          ]);
+        }
+      },
     ]);
 
     return (crateName: crateName, libCrateTypes: libCrateTypes);
@@ -88,7 +124,11 @@ interface class ToolchainTomlParser {
   ) {
     logger?.info('Looking for rust-toolchain.toml');
     if (!File(toolchainTomlPath).existsSync()) {
-      throw RustValidationException(['$toolchainTomlPath not found']);
+      throw RustValidationException([
+        '''
+The rust-toolchain.toml file was not found at $toolchainTomlPath.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+      ]);
     }
 
     logger?.info('Parsing rust-toolchain.toml');
@@ -98,7 +138,11 @@ interface class ToolchainTomlParser {
     } on Object catch (e, stackTrace) {
       logger?.severe('Failed to parse rust-toolchain.toml', e, stackTrace);
       throw RustValidationException([
-        'Failed to parse rust-toolchain.toml: $e',
+        '''
+Failed to parse the rust-toolchain.toml file at $toolchainTomlPath.
+Please check the file for syntax errors.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml
+The following exception was thrown: $e''',
       ]);
     }
 
@@ -106,11 +150,31 @@ interface class ToolchainTomlParser {
       String channel,
       Set<String> targets,
     ] = RustValidationException.compose<dynamic>([
-      () => toolchain.walk<String>('toolchain.channel'),
-      () => toolchain
-          .walk<List<dynamic>>('toolchain.targets')
-          .cast<String>()
-          .toSet(),
+      () {
+        try {
+          return toolchain.walk<String>('toolchain.channel');
+        } on RustValidationException {
+          throw const RustValidationException([
+            '''
+The rust-toolchain.toml file must specify the `toolchain.channel` field.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+          ]);
+        }
+      },
+      () {
+        try {
+          return toolchain
+              .walk<List<dynamic>>('toolchain.targets')
+              .cast<String>()
+              .toSet();
+        } on RustValidationException {
+          throw const RustValidationException([
+            '''
+The rust-toolchain.toml file must specify the `toolchain.targets` field.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+          ]);
+        }
+      },
     ]);
 
     return (channel: channel, targets: targets);

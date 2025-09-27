@@ -63,10 +63,18 @@ void main() {
           isA<RustValidationException>().having(
             (e) => e.validationErrors,
             'validationErrors',
-            containsAll([
-              '''Cargo.toml must specify [staticlib, cdylib] under lib.crate-types''',
-              '''Your current channel in rust-toolchain.toml is stable; this is dangerous and consequently is not allowed! Please specify an exact version to fix this issue.''',
-              '''aarch64-linux-android is not one of the supported targets: {x86_64-linux-gnu}''',
+            equals([
+              '''
+Your Cargo.toml must specify [staticlib, cdylib] under `lib.crate-types`.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#cargotoml''',
+              '''
+The rust-toolchain.toml is using the `stable` channel, which is not allowed.
+Please specify an exact version (e.g., `1.90.0`) to ensure a reproducible build.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+              '''
+The rust-toolchain.toml does not include the target `aarch64-linux-android`.
+If you wish to support this target, please add it to the `targets` array in the rust-toolchain.toml file.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
             ]),
           ),
         ),

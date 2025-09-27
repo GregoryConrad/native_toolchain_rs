@@ -29,7 +29,9 @@ interface class CrateInfoValidator {
         const requiredTypes = ['staticlib', 'cdylib'];
         if (!requiredTypes.every(libCrateTypes.contains)) {
           throw RustValidationException([
-            'Cargo.toml must specify $requiredTypes under lib.crate-types',
+            '''
+Your Cargo.toml must specify $requiredTypes under `lib.crate-types`.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#cargotoml''',
           ]);
         }
 
@@ -45,15 +47,19 @@ interface class CrateInfoValidator {
         const deniedChannels = {'stable', 'beta', 'nightly'};
         if (deniedChannels.contains(channel)) {
           toolchainIssues.add(
-            'Your current channel in rust-toolchain.toml is $channel; '
-            'this is dangerous and consequently is not allowed! '
-            'Please specify an exact version to fix this issue.',
+            '''
+The rust-toolchain.toml is using the `$channel` channel, which is not allowed.
+Please specify an exact version (e.g., `1.90.0`) to ensure a reproducible build.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
           );
         }
 
         if (!targets.contains(targetTriple)) {
           toolchainIssues.add(
-            '$targetTriple is not one of the supported targets: $targets',
+            '''
+The rust-toolchain.toml does not include the target `$targetTriple`.
+If you wish to support this target, please add it to the `targets` array in the rust-toolchain.toml file.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
           );
         }
 
