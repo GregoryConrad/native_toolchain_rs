@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`native_toolchain_rs` - `v0.1.1+3`](#native_toolchain_rs---v0113)
+
+---
+
+#### `native_toolchain_rs` - `v0.1.1+3`
+
+ - **FIX**: revert to test 1.26.2 for stable flutter.
+
+
+## 2025-09-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`native_toolchain_rs` - `v0.1.1+2`](#native_toolchain_rs---v0112)
 
 ---

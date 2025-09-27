@@ -1,3 +1,7 @@
+## 0.1.1+3
+
+ - **FIX**: revert to test 1.26.2 for stable flutter.
+
 ## 0.1.1+2
 
  - **FIX**: revert to meta 1.16 for stable flutter.
