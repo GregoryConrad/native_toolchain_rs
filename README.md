@@ -1,8 +1,10 @@
-<p align="center">
-<a href="https://github.com/GregoryConrad/native_toolchain_rs/actions"><img src="https://github.com/GregoryConrad/native_toolchain_rs/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
-<a href="https://github.com/GregoryConrad/native_toolchain_rs"><img src="https://img.shields.io/github/stars/GregoryConrad/native_toolchain_rs.svg?style=flat&logo=github&colorB=deeppink&label=stars" alt="Github Stars"></a>
-<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="MIT License"></a>
-</p>
+# 🧱 `native_toolchain_rs` 🦀
+
+[![Build Status](https://github.com/GregoryConrad/native_toolchain_rs/actions/workflows/build.yml/badge.svg)](https://github.com/GregoryConrad/native_toolchain_rs/actions)
+[![Github Stars](https://img.shields.io/github/stars/GregoryConrad/native_toolchain_rs.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/GregoryConrad/native_toolchain_rs)
+[![MIT License](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
+
+---
 
 Rust support for Dart's Native Assets.
 
