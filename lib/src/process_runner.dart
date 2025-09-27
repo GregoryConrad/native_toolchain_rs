@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:logging/logging.dart';
+import 'package:meta/meta.dart';
 import 'package:native_toolchain_rs/src/exception.dart';
 
-// NOTE: this is an internal implementation detail
-// ignore_for_file: public_member_api_docs
-
-final class ProcessRunner {
+@internal
+interface class ProcessRunner {
   const ProcessRunner(this.logger);
   final Logger? logger;
 
@@ -46,6 +45,7 @@ final class ProcessRunner {
   }
 }
 
+@internal
 extension InvokeRustup on ProcessRunner {
   Future<String> invokeRustup(
     List<String> arguments, {

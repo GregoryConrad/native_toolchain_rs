@@ -2,7 +2,9 @@ import 'package:code_assets/code_assets.dart';
 import 'package:hooks/hooks.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
+import 'package:native_toolchain_rs/src/build_environment.dart';
 import 'package:native_toolchain_rs/src/build_runner.dart';
+import 'package:native_toolchain_rs/src/crate_info_validator.dart';
 import 'package:native_toolchain_rs/src/crate_resolver.dart';
 import 'package:native_toolchain_rs/src/process_runner.dart';
 import 'package:native_toolchain_rs/src/toml_parsing.dart';
@@ -97,15 +99,19 @@ final class RustBuilder {
       logger,
       tomlDocumentWrapperFactory,
     );
+    const buildEnvironmentFactory = BuildEnvironmentFactory();
+    final crateInfoValidator = CrateInfoValidator(
+      toolchainTomlParser: toolchainTomlParser,
+      cargoManifestParser: cargoManifestParser,
+    );
 
     return RustBuildRunner(
       config: this,
       logger: logger,
       processRunner: processRunner,
       crateDirectoryResolver: crateDirectoryResolver,
-      tomlDocumentWrapperFactory: tomlDocumentWrapperFactory,
-      cargoManifestParser: cargoManifestParser,
-      toolchainTomlParser: toolchainTomlParser,
+      buildEnvironmentFactory: buildEnvironmentFactory,
+      crateInfoValidator: crateInfoValidator,
     ).run(input: input, output: output, assetRouting: assetRouting);
   }
 }
