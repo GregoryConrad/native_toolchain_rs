@@ -28,8 +28,8 @@ pubspec.lock
 **/doc/api/
 .dart_tool/
 .packages
-/build/
-/coverage/
+build/
+coverage/
 .pub-cache/
 .pub/
 .flutter-plugins

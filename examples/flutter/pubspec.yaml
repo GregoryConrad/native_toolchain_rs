@@ -1,0 +1,28 @@
+name: flutter_example
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hooks: ^0.20.1
+  native_toolchain_rs: ^0.1.1
+
+dev_dependencies:
+  # TODO use released version
+  # ffigen: ^20.0.0-dev.0
+  ffigen:
+    git:
+      url: https://github.com/dart-lang/native
+      path: pkgs/ffigen
+      ref: 85fa542
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

@@ -7,6 +7,8 @@ environment:
 
 workspace:
   - native_toolchain_rs
+  - examples/dart_only
+  - examples/flutter
 
 dev_dependencies:
   melos: ^7.1.1
@@ -19,6 +21,24 @@ melos:
       run: flutter test test
       packageFilters:
         dirExists: test
+      exec:
+        concurrency: 1
+        failFast: true
+
+    integration-test:
+      description: Run integration tests for a specific package in this project.
+      run: flutter test integration_test
+      packageFilters:
+        dirExists: integration_test
+      exec:
+        concurrency: 1
+        failFast: true
+
+    init-integration-test-boilerplate:
+      description: Create integration test boilerplate for a specific package in this project.
+      run: flutter create .
+      packageFilters:
+        dirExists: integration_test
       exec:
         concurrency: 1
         failFast: true
