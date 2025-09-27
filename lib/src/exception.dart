@@ -44,7 +44,10 @@ final class RustValidationException implements RustBuildException {
 
   @override
   String toString() =>
-      'RustValidationException(validationErrors: $validationErrors)';
+      '''
+RustValidationException(
+${validationErrors.map((e) => '  - $e').join(Platform.lineTerminator)}
+)''';
 }
 
 /// A [RustBuildException] that specifies there was an issue

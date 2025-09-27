@@ -19,7 +19,11 @@ interface class CrateDirectoryResolver {
         .firstOrNull;
     if (crateDirectory == null) {
       throw RustValidationException([
-        'No options for the crate path ($cratePathOptions) exist at $rootPath',
+        '''
+Could not find the crate directory.
+The following paths were checked: $cratePathOptions at $rootPath.
+Please make sure that the crate is in one of these locations, or explicitly specify the `cratePath` in your `RustBuilder`.
+For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#code-setup''',
       ]);
     }
     return crateDirectory;
