@@ -15,6 +15,30 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`native_toolchain_rs` - `v0.1.1+1`](#native_toolchain_rs---v0111)
+
+---
+
+#### `native_toolchain_rs` - `v0.1.1+1`
+
+ - **REFACTOR**: switch to monorepo ([#15](https://github.com/GregoryConrad/native_toolchain_rs/issues/15)).
+ - **FIX**: ensure toolchain is downloaded when logger is null.
+ - **FIX**: use corrected library file name.
+ - **DOCS**: move lingering example dir to actual package.
+
+
+## 2025-09-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`native_toolchain_rs` - `v0.1.1`](#native_toolchain_rs---v011)
 
 ---

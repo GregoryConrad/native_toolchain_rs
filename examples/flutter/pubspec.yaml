@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   hooks: ^0.20.1
-  native_toolchain_rs: ^0.1.1
+  native_toolchain_rs: ^0.1.1+1
 
 dev_dependencies:
   # TODO use released version
