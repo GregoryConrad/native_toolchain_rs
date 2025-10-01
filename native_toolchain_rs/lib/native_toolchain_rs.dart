@@ -21,7 +21,7 @@ enum BuildMode {
 }
 
 /// Builds a Rust project via `rustup`.
-final class RustBuilder {
+final class RustBuilder implements Builder {
   /// Creates a [RustBuilder] with the supplied configuration.
   const RustBuilder({
     required this.assetName,
@@ -82,6 +82,7 @@ final class RustBuilder {
   // some ugly @visibleForTesting-marked API.
   // Thus, we defer to RustBuildRunner for unit testing purposes.
   // This class itself will be integration tested.
+  @override
   Future<void> run({
     required BuildInput input,
     required BuildOutputBuilder output,
