@@ -8,7 +8,7 @@ import 'package:toml/toml.dart';
 @internal
 interface class TomlDocumentWrapperFactory {
   const TomlDocumentWrapperFactory(this.logger);
-  final Logger? logger;
+  final Logger logger;
 
   TomlDocumentWrapper parseFile(String filePath) =>
       TomlDocumentWrapper(logger, filePath, TomlDocument.loadSync(filePath));
@@ -18,7 +18,7 @@ interface class TomlDocumentWrapperFactory {
 final class TomlDocumentWrapper {
   const TomlDocumentWrapper(this.logger, this.filePath, this.document);
 
-  final Logger? logger;
+  final Logger logger;
   final String filePath;
   final TomlDocument document;
 
@@ -32,7 +32,7 @@ final class TomlDocumentWrapper {
       }
       return currNode as T;
     } on Object catch (exception, stackTrace) {
-      logger?.severe(
+      logger.severe(
         'Failed to find $path in $filePath: $document',
         exception,
         stackTrace,
@@ -50,13 +50,13 @@ The following exception was thrown: $exception''',
 @internal
 interface class CargoManifestParser {
   const CargoManifestParser(this.logger, this.tomlDocumentFactory);
-  final Logger? logger;
+  final Logger logger;
   final TomlDocumentWrapperFactory tomlDocumentFactory;
 
   ({String crateName, List<String> libCrateTypes}) parseManifest(
     String manifestPath,
   ) {
-    logger?.info('Looking for Cargo.toml');
+    logger.info('Looking for Cargo.toml');
     if (!File(manifestPath).existsSync()) {
       throw RustValidationException([
         '''
@@ -65,12 +65,12 @@ For more information, see https://github.com/GregoryConrad/native_toolchain_rs?t
       ]);
     }
 
-    logger?.info('Parsing Cargo.toml');
+    logger.info('Parsing Cargo.toml');
     final TomlDocumentWrapper manifest;
     try {
       manifest = tomlDocumentFactory.parseFile(manifestPath);
     } on Object catch (exception, stackTrace) {
-      logger?.severe('Failed to parse Cargo.toml', exception, stackTrace);
+      logger.severe('Failed to parse Cargo.toml', exception, stackTrace);
       throw RustValidationException([
         '''
 Failed to parse the Cargo.toml file at $manifestPath.
@@ -116,13 +116,13 @@ and https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-
 @internal
 interface class ToolchainTomlParser {
   const ToolchainTomlParser(this.logger, this.tomlDocumentFactory);
-  final Logger? logger;
+  final Logger logger;
   final TomlDocumentWrapperFactory tomlDocumentFactory;
 
   ({Set<String> targets, String channel}) parseToolchainToml(
     String toolchainTomlPath,
   ) {
-    logger?.info('Looking for rust-toolchain.toml');
+    logger.info('Looking for rust-toolchain.toml');
     if (!File(toolchainTomlPath).existsSync()) {
       throw RustValidationException([
         '''
@@ -131,12 +131,12 @@ For more information, see https://github.com/GregoryConrad/native_toolchain_rs?t
       ]);
     }
 
-    logger?.info('Parsing rust-toolchain.toml');
+    logger.info('Parsing rust-toolchain.toml');
     final TomlDocumentWrapper toolchain;
     try {
       toolchain = tomlDocumentFactory.parseFile(toolchainTomlPath);
     } on Object catch (e, stackTrace) {
-      logger?.severe('Failed to parse rust-toolchain.toml', e, stackTrace);
+      logger.severe('Failed to parse rust-toolchain.toml', e, stackTrace);
       throw RustValidationException([
         '''
 Failed to parse the rust-toolchain.toml file at $toolchainTomlPath.

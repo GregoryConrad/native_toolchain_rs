@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:logging/logging.dart';
 import 'package:native_toolchain_rs/src/exception.dart';
 import 'package:native_toolchain_rs/src/toml_parsing.dart';
 import 'package:test/test.dart';
 
 void main() {
+  final logger = Logger.detached('TestLogger');
+
   group('TomlDocumentWrapper', () {
     late Directory tempDir;
     late String tempFilePath;
@@ -20,14 +23,14 @@ void main() {
 
     test('walk returns value when path is valid', () {
       File(tempFilePath).writeAsStringSync('key = "value"\n');
-      const factory = TomlDocumentWrapperFactory(null);
+      final factory = TomlDocumentWrapperFactory(logger);
       final wrapper = factory.parseFile(tempFilePath);
       expect(wrapper.walk<String>('key'), 'value');
     });
 
     test('walk throws RustValidationException when path is invalid', () {
       File(tempFilePath).writeAsStringSync('key = "value"\n');
-      const factory = TomlDocumentWrapperFactory(null);
+      final factory = TomlDocumentWrapperFactory(logger);
       final wrapper = factory.parseFile(tempFilePath);
       expect(
         () => wrapper.walk<String>('invalid.path'),
@@ -37,8 +40,8 @@ void main() {
   });
 
   group('CargoManifestParser', () {
-    const tomlDocumentFactory = TomlDocumentWrapperFactory(null);
-    const parser = CargoManifestParser(null, tomlDocumentFactory);
+    final tomlDocumentFactory = TomlDocumentWrapperFactory(logger);
+    final parser = CargoManifestParser(logger, tomlDocumentFactory);
     late Directory tempDir;
     late String tempManifestPath;
 
@@ -84,8 +87,8 @@ crate-type = ["staticlib"]
   });
 
   group('ToolchainTomlParser', () {
-    const tomlDocumentFactory = TomlDocumentWrapperFactory(null);
-    const parser = ToolchainTomlParser(null, tomlDocumentFactory);
+    final tomlDocumentFactory = TomlDocumentWrapperFactory(logger);
+    final parser = ToolchainTomlParser(logger, tomlDocumentFactory);
     late Directory tempDir;
     late String tempToolchainTomlPath;
 

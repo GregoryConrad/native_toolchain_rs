@@ -32,38 +32,17 @@ If you haven't already, create a `Cargo.toml` and `rust-toolchain.toml` in your 
 keep reading for what these two files must contain
 (but don't worry if you forget, you'll get a helpful error message).
 
-### Quick n' dirty ("it just works") setup
+### `hook/build.dart`
 ```dart
-// hook/build.dart:
 import 'package:hooks/hooks.dart';
 import 'package:native_toolchain_rs/native_toolchain_rs.dart';
 
 void main(List<String> args) async {
   await build(args, (input, output) async {
-    await RustBuilder(
-      assetName: 'src/my_ffi_bindings.g.dart',
-    ).run(input: input, output: output);
-  });
-}
-```
-
-### Recommended setup (so you get logs)
-```dart
-// hook/build.dart:
-import 'package:hooks/hooks.dart';
-import 'package:logging/logging.dart';
-import 'package:native_toolchain_rs/native_toolchain_rs.dart';
-
-void main(List<String> args) async {
-  Logger.root.level = Level.CONFIG; // or whatever level you prefer
-
-  await build(args, (input, output) async {
-    final logger = Logger('my_package_build')..onRecord.listen(print);
-
     await RustBuilder(
       assetName: 'src/my_ffi_bindings.g.dart',
       // ...maybe enable some Cargo features or something in here too
-    ).run(input: input, output: output, logger: logger);
+    ).run(input: input, output: output);
   });
 }
 ```

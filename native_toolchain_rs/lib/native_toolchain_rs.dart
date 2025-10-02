@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:code_assets/code_assets.dart';
 import 'package:hooks/hooks.dart';
 import 'package:logging/logging.dart';
@@ -89,6 +91,7 @@ final class RustBuilder implements Builder {
     List<AssetRouting> assetRouting = const [ToAppBundle()],
     Logger? logger,
   }) {
+    logger ??= _createDefaultLogger();
     final processRunner = ProcessRunner(logger);
     const crateDirectoryResolver = CrateDirectoryResolver();
     final tomlDocumentWrapperFactory = TomlDocumentWrapperFactory(logger);
@@ -115,4 +118,23 @@ final class RustBuilder implements Builder {
       crateInfoValidator: crateInfoValidator,
     ).run(input: input, output: output, assetRouting: assetRouting);
   }
+}
+
+Logger _createDefaultLogger() {
+  return Logger.detached('RustBuilder')
+    ..level = Level.CONFIG
+    ..onRecord.listen((LogRecord record) {
+      final output = record.level >= Level.WARNING ? stderr : stdout;
+
+      // NOTE: this is an unreadable mess with cascade notation
+      // ignore: cascade_invocations
+      output.writeln(record);
+
+      if (record.error != null) {
+        output.writeln(record.error);
+      }
+      if (record.stackTrace != null) {
+        output.writeln(record.stackTrace);
+      }
+    });
 }
