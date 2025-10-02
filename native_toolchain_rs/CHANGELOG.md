@@ -1,3 +1,8 @@
+## 0.1.2
+
+ - **FEAT**: add a default logger ([#20](https://github.com/GregoryConrad/native_toolchain_rs/issues/20)).
+ - **FEAT**: make RustBuilder implement Builder interface ([#19](https://github.com/GregoryConrad/native_toolchain_rs/issues/19)).
+
 ## 0.1.1+3
 
  - **FIX**: revert to test 1.26.2 for stable flutter.

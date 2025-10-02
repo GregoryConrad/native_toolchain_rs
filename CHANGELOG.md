@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-10-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`native_toolchain_rs` - `v0.1.2`](#native_toolchain_rs---v012)
+
+---
+
+#### `native_toolchain_rs` - `v0.1.2`
+
+ - **FEAT**: add a default logger ([#20](https://github.com/GregoryConrad/native_toolchain_rs/issues/20)).
+ - **FEAT**: make RustBuilder implement Builder interface ([#19](https://github.com/GregoryConrad/native_toolchain_rs/issues/19)).
+
+
 ## 2025-09-27
 
 ### Changes
