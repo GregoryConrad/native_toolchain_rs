@@ -7,7 +7,7 @@ import 'package:native_toolchain_rs/src/exception.dart';
 @internal
 interface class ProcessRunner {
   const ProcessRunner(this.logger);
-  final Logger? logger;
+  final Logger logger;
 
   Future<String> invoke(
     String executable,
@@ -16,7 +16,7 @@ interface class ProcessRunner {
     Map<String, String>? environment,
   }) async {
     try {
-      logger?.info(
+      logger.info(
         'Invoking "$executable $arguments" '
         '${workingDirectory != null ? 'in directory $workingDirectory ' : ''}'
         'with environment: ${environment ?? {}}',
@@ -35,7 +35,7 @@ interface class ProcessRunner {
       }
       return result.stdout as String;
     } on ProcessException catch (exception, stackTrace) {
-      logger?.severe(
+      logger.severe(
         'Failed to invoke "$executable $arguments"',
         exception,
         stackTrace,

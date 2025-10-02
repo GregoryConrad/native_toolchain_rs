@@ -24,7 +24,7 @@ interface class RustBuildRunner {
   });
 
   final RustBuilder config;
-  final Logger? logger;
+  final Logger logger;
   final CrateDirectoryResolver crateDirectoryResolver;
   final ProcessRunner processRunner;
   final BuildEnvironmentFactory buildEnvironmentFactory;
@@ -35,19 +35,20 @@ interface class RustBuildRunner {
     required BuildOutputBuilder output,
     required List<AssetRouting> assetRouting,
   }) async {
-    logger?.info('Starting build of Rust native assets');
-    logger?.config(input);
-    logger?.config(Platform.environment);
+    logger
+      ..info('Starting build of Rust native assets')
+      ..config(input)
+      ..config(Platform.environment);
 
     if (!input.config.buildCodeAssets) {
-      logger?.info(
+      logger.info(
         'buildCodeAssets is false; '
         'skipping build of Rust native assets',
       );
       return;
     }
 
-    logger?.info('Gathering all data required for the build');
+    logger.info('Gathering all data required for the build');
     final codeConfig = input.config.code;
     final CodeConfig(:targetOS, :targetTriple, :linkMode) = codeConfig;
     final RustBuilder(
@@ -77,10 +78,10 @@ interface class RustBuildRunner {
     // NOTE: re-run build whenever anything in the Rust directory changes
     output.dependencies.add(crateDirectory.uri);
 
-    logger?.info('Ensuring $toolchainChannel is installed');
+    logger.info('Ensuring $toolchainChannel is installed');
     await ensureToolchainDownloaded(crateDirectory.path);
 
-    logger?.info('Running cargo build');
+    logger.info('Running cargo build');
     await processRunner.invokeRustup(
       [
         'run',
@@ -135,6 +136,6 @@ interface class RustBuildRunner {
       'show',
       'active-toolchain',
     ], workingDirectory: crateDirectory);
-    logger?.config(showToolchainOutput);
+    logger.config(showToolchainOutput);
   }
 }
