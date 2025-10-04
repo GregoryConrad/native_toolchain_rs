@@ -2,7 +2,7 @@ name: native_toolchain_rs
 description: >
   Rust support for Dart's Native Assets.
   Automatically builds and bundles your Rust code with your Dart code!
-version: 0.1.2
+version: 0.1.2+1
 homepage: https://github.com/GregoryConrad/native_toolchain_rs
 repository: https://github.com/GregoryConrad/native_toolchain_rs
 issue_tracker: https://github.com/GregoryConrad/native_toolchain_rs/issues

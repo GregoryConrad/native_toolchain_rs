@@ -1,3 +1,7 @@
+## 0.1.2+1
+
+ - **FIX**: drop .exe from NDK binaries and fix NDK target triples ([#22](https://github.com/GregoryConrad/native_toolchain_rs/issues/22)).
+
 ## 0.1.2
 
  - **FEAT**: add a default logger ([#20](https://github.com/GregoryConrad/native_toolchain_rs/issues/20)).
