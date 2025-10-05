@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-10-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`native_toolchain_rs` - `v0.1.2+2`](#native_toolchain_rs---v0122)
+
+---
+
+#### `native_toolchain_rs` - `v0.1.2+2`
+
+ - **FIX**: use the .cmd NDK clangs on Windows ([#24](https://github.com/GregoryConrad/native_toolchain_rs/issues/24)).
+
+
 ## 2025-10-04
 
 ### Changes

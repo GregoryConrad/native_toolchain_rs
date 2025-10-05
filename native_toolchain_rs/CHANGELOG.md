@@ -1,3 +1,7 @@
+## 0.1.2+2
+
+ - **FIX**: use the .cmd NDK clangs on Windows ([#24](https://github.com/GregoryConrad/native_toolchain_rs/issues/24)).
+
 ## 0.1.2+1
 
  - **FIX**: drop .exe from NDK binaries and fix NDK target triples ([#22](https://github.com/GregoryConrad/native_toolchain_rs/issues/22)).
