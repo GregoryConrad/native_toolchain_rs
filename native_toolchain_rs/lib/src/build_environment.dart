@@ -48,7 +48,10 @@ interface class AndroidBuildEnvironmentFactory {
       final compilerBinariesDir = path.dirname(
         path.fromUri(cCompiler.compiler),
       );
-      final binaryPath = path.join(compilerBinariesDir, binaryName);
+      final binaryPath = path.join(
+        compilerBinariesDir,
+        (OS.current == OS.windows) ? '$binaryName.cmd' : binaryName,
+      );
 
       if (!File(binaryPath).existsSync()) {
         throw RustValidationException([
