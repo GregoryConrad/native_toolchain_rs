@@ -1,3 +1,7 @@
+## 0.1.2+3
+
+ - **FIX**: set more NDK env vars + update examples ([#27](https://github.com/GregoryConrad/native_toolchain_rs/issues/27)).
+
 ## 0.1.2+2
 
  - **FIX**: use the .cmd NDK clangs on Windows ([#24](https://github.com/GregoryConrad/native_toolchain_rs/issues/24)).

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-10-18
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`native_toolchain_rs` - `v0.1.2+3`](#native_toolchain_rs---v0123)
+
+---
+
+#### `native_toolchain_rs` - `v0.1.2+3`
+
+ - **FIX**: set more NDK env vars + update examples ([#27](https://github.com/GregoryConrad/native_toolchain_rs/issues/27)).
+
+
 ## 2025-10-05
 
 ### Changes
