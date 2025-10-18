@@ -33,6 +33,7 @@
 
             env = {
               RUST_BACKTRACE = "1";
+              LIBCLANG_PATH = "${pkgs.llvmPackages_20.libclang.lib}/lib";
             };
 
             shellHook = ''

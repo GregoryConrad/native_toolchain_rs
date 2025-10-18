@@ -1,6 +1,5 @@
-unsafe extern "C" {
-    fn c_add(a: i32, b: i32) -> i32;
-}
+#![allow(warnings)]
+include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 #[unsafe(no_mangle)]
 pub extern "C" fn rust_add(a: i32, b: i32) -> i32 {

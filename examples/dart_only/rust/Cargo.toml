@@ -3,8 +3,10 @@ name = "dart-only-example"
 edition = "2024"
 
 [lib]
-crate-type = ["staticlib", "cdylib"]
+# NOTE: also adding lib here so this can be consumed in the flutter example
+crate-type = ["staticlib", "cdylib", "lib"]
 
 [build-dependencies]
+bindgen = "0.72.1"
 cc = "1.2.39"
 cbindgen = "0.29.0"
