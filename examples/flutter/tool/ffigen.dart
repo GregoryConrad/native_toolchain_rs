@@ -12,5 +12,5 @@ void main() {
       'increase_count',
       'get_count',
     }),
-  ).generate(logger: null);
+  ).generate();
 }

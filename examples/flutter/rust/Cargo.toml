@@ -5,5 +5,10 @@ edition = "2024"
 [lib]
 crate-type = ["staticlib", "cdylib"]
 
+[dependencies]
+# NOTE: this just verifies that cc/bindgen also work in flutter apps,
+# since dart-only-example uses cc/bindgen
+dart-only-example.path = "../../dart_only/rust"
+
 [build-dependencies]
 cbindgen = "0.29.0"

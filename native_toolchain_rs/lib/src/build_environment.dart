@@ -69,6 +69,11 @@ interface class AndroidBuildEnvironmentFactory {
       'armv7-linux-androideabi' => 'armv7a-linux-androideabi',
       _ => targetTriple,
     };
+    final ndkSysrootTargetTriple = switch (targetTriple) {
+      // NOTE: sometimes the Rust and NDK sysroot target triples do not match.
+      'armv7-linux-androideabi' => 'arm-linux-androideabi',
+      _ => targetTriple,
+    };
 
     // NOTE: we need to point to NDK >=27 vended LLVM for Android.
     // The `${ndkTargetTriple}35-clang`s were introduced in NDK 27,
@@ -79,11 +84,19 @@ interface class AndroidBuildEnvironmentFactory {
     final clangPath = getCompilerPath('$ndkTargetTriple$apiTarget-clang');
     final clangPpPath = getCompilerPath('$ndkTargetTriple$apiTarget-clang++');
 
+    final ndkToolchainRoot = path.dirname(path.dirname(clangPath));
+    final sysroot = path.join(ndkToolchainRoot, 'sysroot');
+    final extraInclude = '$sysroot/usr/include/$ndkSysrootTargetTriple';
+    final bindgenClangArgs = '--sysroot=$sysroot -I$extraInclude'
+        // NOTE: force the use of forward-slash path separators
+        .replaceAll(r'\', '/');
+
     return {
       'AR_$targetTripleEnvVar': path.fromUri(cCompiler.archiver),
       'CC_$targetTripleEnvVar': clangPath,
       'CXX_$targetTripleEnvVar': clangPpPath,
       'CARGO_TARGET_${targetTripleEnvVar.toUpperCase()}_LINKER': clangPath,
+      'BINDGEN_EXTRA_CLANG_ARGS_$targetTripleEnvVar': bindgenClangArgs,
     };
   }
 }
