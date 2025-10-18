@@ -18,6 +18,7 @@ jobs:
       - uses: subosito/flutter-action@v2 # TODO remove this once flutter is in flake
         with:
           channel: beta
+      - run: sudo apt install g++-13 # TODO remove once https://github.com/dart-lang/native/pull/2713 lands
       - run: |
           # TODO remove this once patch lands
           flutter --version
