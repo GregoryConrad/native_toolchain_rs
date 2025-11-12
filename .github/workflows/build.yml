@@ -48,8 +48,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
-        with:
-          channel: beta # TODO remove
       - uses: bluefireteam/melos-action@v3
       - run: melos run init-integration-test-boilerplate
       - run: melos run integration-test -- -d macos
@@ -59,8 +57,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
-        with:
-          channel: beta # TODO remove
       - uses: bluefireteam/melos-action@v3
       - run: melos run init-integration-test-boilerplate
       - run: melos run integration-test -- -d windows
@@ -70,8 +66,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
-        with:
-          channel: beta # TODO remove
       - uses: bluefireteam/melos-action@v3
       - uses: pyvista/setup-headless-display-action@v3
       - name: Install dependencies for flutter integration test
@@ -84,8 +78,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
-        with:
-          channel: beta # TODO remove
       - uses: bluefireteam/melos-action@v3
       - name: Start iOS Simulator
         uses: futureware-tech/simulator-action@v4
@@ -105,8 +97,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: subosito/flutter-action@v2
-        with:
-          channel: beta # TODO remove
       - uses: bluefireteam/melos-action@v3
       - name: Enable KVM for Android emulator
         run: |
