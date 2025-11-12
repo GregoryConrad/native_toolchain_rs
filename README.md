@@ -21,8 +21,7 @@ Rust support for Dart's Native Assets.
 1. Install [rustup](https://rustup.rs), for Rust, on your development computer
    (if you are a library author, consumers of your package will have to do the same)
 2. Run `flutter pub add native_toolchain_rs hooks` for Flutter or `dart pub add native_toolchain_rs hooks` for Dart-only
-3. (Until [Native Assets](https://github.com/dart-lang/sdk/issues/50565) is fully released) Switch to Flutter's beta channel: `flutter channel beta`
-4. See [Code Setup](#code-setup)
+3. See [Code Setup](#code-setup)
 
 
 ## Code Setup
