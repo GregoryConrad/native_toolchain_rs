@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-11-12
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`native_toolchain_rs` - `v1.0.0`](#native_toolchain_rs---v100)
+
+---
+
+#### `native_toolchain_rs` - `v1.0.0`
+
+ - Bump "native_toolchain_rs" to `1.0.0`.
+
+
 ## 2025-11-11
 
 ### Changes
