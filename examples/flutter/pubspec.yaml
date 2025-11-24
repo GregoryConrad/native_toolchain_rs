@@ -12,7 +12,7 @@ dependencies:
   native_toolchain_rs: ^1.0.0
 
 dev_dependencies:
-  ffigen: ^20.0.0
+  ffigen: ^20.1.0
   flutter_test:
     sdk: flutter
   integration_test:
