@@ -26,12 +26,15 @@
         devShells = {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              # TODO flutter335 but at version where native assets works
+              # TODO uncomment once we get flutter >3.38 in nixpkgs:
+              # flutter
               rustup
               llvmPackages_20.clangUseLLVM
             ];
 
             env = {
+              # TODO uncomment once we get flutter >3.38 in nixpkgs:
+              # FLUTTER_ROOT = "${pkgs.flutter}";
               RUST_BACKTRACE = "1";
               LIBCLANG_PATH = "${pkgs.llvmPackages_20.libclang.lib}/lib";
             };
