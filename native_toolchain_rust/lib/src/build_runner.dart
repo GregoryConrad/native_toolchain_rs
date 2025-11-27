@@ -36,14 +36,14 @@ interface class RustBuildRunner {
     required List<AssetRouting> assetRouting,
   }) async {
     logger
-      ..info('Starting build of Rust native assets')
+      ..info('Starting build of Rust code assets')
       ..config(input)
       ..config(Platform.environment);
 
     if (!input.config.buildCodeAssets) {
       logger.info(
         'buildCodeAssets is false; '
-        'skipping build of Rust native assets',
+        'skipping build of Rust code assets',
       );
       return;
     }

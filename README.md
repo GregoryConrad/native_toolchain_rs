@@ -6,7 +6,7 @@
 
 ---
 
-Rust support for Dart's Native Assets.
+Rust support for Dart's [build hooks](https://dart.dev/tools/hooks).
 
 ## Why native_toolchain_rust?
 1. It's opinionated.
