@@ -1,5 +1,11 @@
 ## 1.0.0
 
+ - Rebrand to native_toolchain_rust from native_toolchain_rs
+
+ - **DOCS**: update outdated "native assets" terminology.
+
+## 1.0.0
+
  - Bump "native_toolchain_rs" to `1.0.0`.
 
 ## 0.1.2+4

@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2025-11-27
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`native_toolchain_rust` - `v1.0.0`](#native_toolchain_rust---v100)
+
+---
+
+#### `native_toolchain_rust` - `v1.0.0`
+
+ - Rebrand to native_toolchain_rust from native_toolchain_rs
+
+ - **DOCS**: update outdated "native assets" terminology.
+
+
 ## 2025-11-12
 
 ### Changes
