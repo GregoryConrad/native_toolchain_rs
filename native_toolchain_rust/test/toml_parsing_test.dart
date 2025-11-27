@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:logging/logging.dart';
-import 'package:native_toolchain_rs/src/exception.dart';
-import 'package:native_toolchain_rs/src/toml_parsing.dart';
+import 'package:native_toolchain_rust/src/exception.dart';
+import 'package:native_toolchain_rust/src/toml_parsing.dart';
 import 'package:test/test.dart';
 
 void main() {

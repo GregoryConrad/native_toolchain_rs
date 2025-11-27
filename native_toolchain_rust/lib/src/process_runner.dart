@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
-import 'package:native_toolchain_rs/src/exception.dart';
+import 'package:native_toolchain_rust/src/exception.dart';
 
 @internal
 interface class ProcessRunner {

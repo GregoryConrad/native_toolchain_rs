@@ -1,14 +1,14 @@
-# 🧱 `native_toolchain_rs` 🦀
+# 🧱 `native_toolchain_rust` 🦀
 
-[![Build Status](https://github.com/GregoryConrad/native_toolchain_rs/actions/workflows/build.yml/badge.svg)](https://github.com/GregoryConrad/native_toolchain_rs/actions)
-[![Github Stars](https://img.shields.io/github/stars/GregoryConrad/native_toolchain_rs.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/GregoryConrad/native_toolchain_rs)
+[![Build Status](https://github.com/GregoryConrad/native_toolchain_rust/actions/workflows/build.yml/badge.svg)](https://github.com/GregoryConrad/native_toolchain_rust/actions)
+[![Github Stars](https://img.shields.io/github/stars/GregoryConrad/native_toolchain_rust.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/GregoryConrad/native_toolchain_rust)
 [![MIT License](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
 Rust support for Dart's Native Assets.
 
-## Why native_toolchain_rs?
+## Why native_toolchain_rust?
 1. It's opinionated.
    That might sound bad, but it's opinionated in the way that _keeps you from shooting yourself in the foot_.
 2. Does more with less.
@@ -20,12 +20,12 @@ Rust support for Dart's Native Assets.
 ## Getting Started
 1. Install [rustup](https://rustup.rs), for Rust, on your development computer
    (if you are a library author, consumers of your package will have to do the same)
-2. Run `flutter pub add native_toolchain_rs hooks` for Flutter or `dart pub add native_toolchain_rs hooks` for Dart-only
+2. Run `flutter pub add native_toolchain_rust hooks` for Flutter or `dart pub add native_toolchain_rust hooks` for Dart-only
 3. See [Code Setup](#code-setup)
 
 
 ## Code Setup
-`native_toolchain_rs` will look (by default) for `native/` or `rust/` (customizable)
+`native_toolchain_rust` will look (by default) for `native/` or `rust/` (customizable)
 in your Dart package's root.
 If you haven't already, create a `Cargo.toml` and `rust-toolchain.toml` in your chosen Rust directory;
 keep reading for what these two files must contain
@@ -34,7 +34,7 @@ keep reading for what these two files must contain
 ### `hook/build.dart`
 ```dart
 import 'package:hooks/hooks.dart';
-import 'package:native_toolchain_rs/native_toolchain_rs.dart';
+import 'package:native_toolchain_rust/native_toolchain_rust.dart';
 
 void main(List<String> args) async {
   await build(args, (input, output) async {

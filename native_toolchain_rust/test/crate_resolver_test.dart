@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:native_toolchain_rs/src/crate_resolver.dart';
-import 'package:native_toolchain_rs/src/exception.dart';
+import 'package:native_toolchain_rust/src/crate_resolver.dart';
+import 'package:native_toolchain_rust/src/exception.dart';
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
 
