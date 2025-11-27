@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
-import 'package:native_toolchain_rs/src/exception.dart';
+import 'package:native_toolchain_rust/src/exception.dart';
 import 'package:toml/toml.dart';
 
 @internal
@@ -61,7 +61,7 @@ interface class CargoManifestParser {
       throw RustValidationException([
         '''
 The Cargo.toml file was not found at $manifestPath.
-For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#cargotoml''',
+For more information, see https://github.com/GregoryConrad/native_toolchain_rust?tab=readme-ov-file#cargotoml''',
       ]);
     }
 
@@ -102,7 +102,7 @@ For more information, see https://doc.rust-lang.org/cargo/reference/manifest.htm
           throw const RustValidationException([
             '''
 The Cargo.toml file must specify the `lib.crate-type` field.
-For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#cargotoml
+For more information, see https://github.com/GregoryConrad/native_toolchain_rust?tab=readme-ov-file#cargotoml
 and https://doc.rust-lang.org/cargo/reference/cargo-targets.html#the-crate-type-field''',
           ]);
         }
@@ -127,7 +127,7 @@ interface class ToolchainTomlParser {
       throw RustValidationException([
         '''
 The rust-toolchain.toml file was not found at $toolchainTomlPath.
-For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+For more information, see https://github.com/GregoryConrad/native_toolchain_rust?tab=readme-ov-file#rust-toolchaintoml''',
       ]);
     }
 
@@ -141,7 +141,7 @@ For more information, see https://github.com/GregoryConrad/native_toolchain_rs?t
         '''
 Failed to parse the rust-toolchain.toml file at $toolchainTomlPath.
 Please check the file for syntax errors.
-For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml
+For more information, see https://github.com/GregoryConrad/native_toolchain_rust?tab=readme-ov-file#rust-toolchaintoml
 The following exception was thrown: $e''',
       ]);
     }
@@ -157,7 +157,7 @@ The following exception was thrown: $e''',
           throw const RustValidationException([
             '''
 The rust-toolchain.toml file must specify the `toolchain.channel` field.
-For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+For more information, see https://github.com/GregoryConrad/native_toolchain_rust?tab=readme-ov-file#rust-toolchaintoml''',
           ]);
         }
       },
@@ -171,7 +171,7 @@ For more information, see https://github.com/GregoryConrad/native_toolchain_rs?t
           throw const RustValidationException([
             '''
 The rust-toolchain.toml file must specify the `toolchain.targets` field.
-For more information, see https://github.com/GregoryConrad/native_toolchain_rs?tab=readme-ov-file#rust-toolchaintoml''',
+For more information, see https://github.com/GregoryConrad/native_toolchain_rust?tab=readme-ov-file#rust-toolchaintoml''',
           ]);
         }
       },

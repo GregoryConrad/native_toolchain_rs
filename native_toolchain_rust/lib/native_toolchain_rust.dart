@@ -4,14 +4,14 @@ import 'package:code_assets/code_assets.dart';
 import 'package:hooks/hooks.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
-import 'package:native_toolchain_rs/src/build_environment.dart';
-import 'package:native_toolchain_rs/src/build_runner.dart';
-import 'package:native_toolchain_rs/src/crate_info_validator.dart';
-import 'package:native_toolchain_rs/src/crate_resolver.dart';
-import 'package:native_toolchain_rs/src/process_runner.dart';
-import 'package:native_toolchain_rs/src/toml_parsing.dart';
+import 'package:native_toolchain_rust/src/build_environment.dart';
+import 'package:native_toolchain_rust/src/build_runner.dart';
+import 'package:native_toolchain_rust/src/crate_info_validator.dart';
+import 'package:native_toolchain_rust/src/crate_resolver.dart';
+import 'package:native_toolchain_rust/src/process_runner.dart';
+import 'package:native_toolchain_rust/src/toml_parsing.dart';
 
-export 'package:native_toolchain_rs/src/exception.dart';
+export 'package:native_toolchain_rust/src/exception.dart';
 
 /// The mode to build the Rust crate with.
 enum BuildMode {

@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:code_assets/code_assets.dart';
 import 'package:meta/meta.dart';
-import 'package:native_toolchain_rs/src/config_mapping.dart';
-import 'package:native_toolchain_rs/src/exception.dart';
+import 'package:native_toolchain_rust/src/config_mapping.dart';
+import 'package:native_toolchain_rust/src/exception.dart';
 import 'package:path/path.dart' as path;
 
 @internal
@@ -65,7 +65,7 @@ interface class AndroidBuildEnvironmentFactory {
     final targetTripleEnvVar = targetTriple.replaceAll('-', '_');
     final ndkTargetTriple = switch (targetTriple) {
       // NOTE: sometimes the Rust and NDK target triples do not match.
-      // See: https://github.com/GregoryConrad/native_toolchain_rs/issues/21#issuecomment-3368307228
+      // See: https://github.com/GregoryConrad/native_toolchain_rust/issues/21#issuecomment-3368307228
       'armv7-linux-androideabi' => 'armv7a-linux-androideabi',
       _ => targetTriple,
     };

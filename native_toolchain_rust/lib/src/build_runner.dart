@@ -4,12 +4,12 @@ import 'package:code_assets/code_assets.dart';
 import 'package:hooks/hooks.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
-import 'package:native_toolchain_rs/native_toolchain_rs.dart';
-import 'package:native_toolchain_rs/src/build_environment.dart';
-import 'package:native_toolchain_rs/src/config_mapping.dart';
-import 'package:native_toolchain_rs/src/crate_info_validator.dart';
-import 'package:native_toolchain_rs/src/crate_resolver.dart';
-import 'package:native_toolchain_rs/src/process_runner.dart';
+import 'package:native_toolchain_rust/native_toolchain_rust.dart';
+import 'package:native_toolchain_rust/src/build_environment.dart';
+import 'package:native_toolchain_rust/src/config_mapping.dart';
+import 'package:native_toolchain_rust/src/crate_info_validator.dart';
+import 'package:native_toolchain_rust/src/crate_resolver.dart';
+import 'package:native_toolchain_rust/src/process_runner.dart';
 import 'package:path/path.dart' as path;
 
 @internal

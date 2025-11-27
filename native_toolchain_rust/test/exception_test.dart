@@ -1,4 +1,4 @@
-import 'package:native_toolchain_rs/src/exception.dart';
+import 'package:native_toolchain_rust/src/exception.dart';
 import 'package:test/test.dart';
 
 void main() {

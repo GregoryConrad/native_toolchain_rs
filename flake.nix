@@ -1,5 +1,5 @@
 {
-  description = "native_toolchain_rs";
+  description = "native_toolchain_rust";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

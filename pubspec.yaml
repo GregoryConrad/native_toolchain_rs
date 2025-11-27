@@ -1,12 +1,12 @@
-name: native_toolchain_rs_workspace
-repository: https://github.com/GregoryConrad/native_toolchain_rs
+name: native_toolchain_rust_workspace
+repository: https://github.com/GregoryConrad/native_toolchain_rust
 publish_to: none
 
 environment:
   sdk: ^3.9.0
 
 workspace:
-  - native_toolchain_rs
+  - native_toolchain_rust
   - examples/dart_only
   - examples/flutter
 
